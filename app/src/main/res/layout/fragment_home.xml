@@ -7,6 +7,7 @@
         android:id="@+id/ivImg"
         android:layout_width="match_parent"
         android:layout_height="@android:dimen/thumbnail_height"
+        android:contentDescription="Image for ocr"
         android:src="@drawable/imgplaceholder"
         android:layout_marginBottom="20dp"/>
 
@@ -42,12 +43,18 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvTest"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/buttons"
-        android:text="TEMPORARY PLACE FOR OCR SPOT, REMOVE OR RELOCATE IN DEVELOPMENT!">
-    </TextView>
+        android:layout_height="match_parent"
+        android:id="@+id/scrollViewTv"
+        android:layout_below="@+id/buttons">
+
+        <TextView
+            android:id="@+id/tvTest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TEMPORARY PLACE FOR OCR SPOT, REMOVE OR RELOCATE IN DEVELOPMENT!">
+        </TextView>
+    </ScrollView>
 
 </RelativeLayout>
