@@ -141,13 +141,11 @@ public class imageUtil {
     @SuppressWarnings("deprecation")
     public static Bitmap getFullPic(String photoPath) {
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(photoPath, bmOptions);
-
         bmOptions.inJustDecodeBounds = false;
         bmOptions.inPurgeable = true;
+        Bitmap bitmap = BitmapFactory.decodeFile(photoPath, bmOptions);
 
-        return BitmapFactory.decodeFile(photoPath, bmOptions);
+        return Bitmap.createScaledBitmap(bitmap, 1520, 2592, false);
     }
 
     /**

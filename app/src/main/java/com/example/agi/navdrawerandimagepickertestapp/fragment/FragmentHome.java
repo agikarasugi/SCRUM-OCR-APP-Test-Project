@@ -27,7 +27,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.agi.navdrawerandimagepickertestapp.R;
-import com.example.agi.navdrawerandimagepickertestapp.azureCognitiveService.ocr;
+import com.example.agi.navdrawerandimagepickertestapp.azureCognitiveService.AsyncResponse;
+import com.example.agi.navdrawerandimagepickertestapp.azureCognitiveService.OcrRequest;
 import com.example.agi.navdrawerandimagepickertestapp.imageUtil.imageUtil;
 
 import java.io.ByteArrayOutputStream;
@@ -148,10 +149,17 @@ public class FragmentHome extends Fragment {
                 ImageView imageView = Objects.requireNonNull(getActivity()).findViewById(R.id.ivImg);
                 imageView.setImageBitmap(bitmap);
 
-                String ocr_texts = ocr.executeOcrRequest(getContext(),
-                        imgOutputStream(bitmap));
-                TextView textView = getActivity().findViewById(R.id.tvTest);
-                textView.setText(ocr_texts);
+//                String ocr_texts = ocr.executeOcrRequest(getContext(),
+//                        imgOutputStream(bitmap));
+                final TextView textView = getActivity().findViewById(R.id.tvTest);
+//                textView.setText(ocr_texts);
+                OcrRequest ocrRequest = new OcrRequest(new AsyncResponse() {
+                    @Override
+                    public void processFinish(Object output) {
+                        textView.setText((String) output);
+                    }
+                }, imgOutputStream(bitmap), getContext());
+                ocrRequest.execute();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -163,12 +171,19 @@ public class FragmentHome extends Fragment {
             ImageView imageView = Objects.requireNonNull(getActivity()).findViewById(R.id.ivImg);
             imageView.setImageBitmap(image);
 
-            String ocr_texts = ocr.executeOcrRequest(
-                    getContext(),
-                    imgOutputStream(image)
-            );
-            TextView textView = getActivity().findViewById(R.id.tvTest);
-            textView.setText(ocr_texts);
+//            String ocr_texts = ocr.executeOcrRequest(
+//                    getContext(),
+//                    imgOutputStream(image)
+//            );
+            final TextView textView = getActivity().findViewById(R.id.tvTest);
+//            textView.setText(ocr_texts);
+            OcrRequest ocrRequest = new OcrRequest(new AsyncResponse() {
+                @Override
+                public void processFinish(Object output) {
+                    textView.setText((String) output);
+                }
+            }, imgOutputStream(image), getContext());
+            ocrRequest.execute();
             imageUtil.deleteImageFile(getActivity(), currentPhotoName);
         }
     }
@@ -189,6 +204,7 @@ public class FragmentHome extends Fragment {
                 return BitmapFactory.decodeStream((InputStream)new URL(strings[0]).getContent());
             } catch (IOException er) {
                 er.printStackTrace();
+                Log.d(TAG, "URLBITMAP!!!");
                 return BitmapFactory.decodeResource(activityWeakReference.get().getResources(),
                         R.drawable.imgplaceholder);
             }
@@ -200,11 +216,17 @@ public class FragmentHome extends Fragment {
                     findViewById(R.id.ivImg);
             imageView.setImageBitmap(bitmap);
 
-            String ocr_texts = ocr.executeOcrRequest(activityWeakReference.get().getContext(),
-                    activityWeakReference.get().imgOutputStream(bitmap));
-            TextView textView_ = Objects.requireNonNull(activityWeakReference.get().getActivity()).
-                    findViewById(R.id.tvTest);
-            textView_.setText(ocr_texts);
+//            String ocr_texts = ocr.executeOcrRequest(activityWeakReference.get().getContext(),
+//                    activityWeakReference.get().imgOutputStream(bitmap));
+            final TextView textView_ = Objects.requireNonNull(activityWeakReference.get().getActivity()).findViewById(R.id.tvTest);
+//            textView_.setText(ocr_texts);
+            OcrRequest ocrRequest = new OcrRequest(new AsyncResponse() {
+                @Override
+                public void processFinish(Object output) {
+                    textView_.setText((String) output);
+                }
+            }, activityWeakReference.get().imgOutputStream(bitmap), activityWeakReference.get().getContext());
+            ocrRequest.execute();
         }
     }
 
@@ -215,7 +237,7 @@ public class FragmentHome extends Fragment {
      */
     public ByteArrayOutputStream imgOutputStream(Bitmap bitmap){
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
         return outputStream;
     }
 

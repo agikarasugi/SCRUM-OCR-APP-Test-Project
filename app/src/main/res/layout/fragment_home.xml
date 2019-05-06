@@ -1,45 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/ivImg"
         android:layout_width="match_parent"
-        android:layout_height="@android:dimen/thumbnail_height"
-        android:contentDescription="Image for ocr"
-        android:src="@drawable/imgplaceholder"
-        android:layout_marginBottom="20dp"/>
+        android:layout_height="200dp"
+        android:src="@drawable/imgplaceholder"/>
 
     <LinearLayout
         android:id="@+id/buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ivImg">
+        android:layout_below="@+id/ivImg"
+        android:paddingVertical="16dp">
 
         <Button
             android:id="@+id/btnCam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="From Camera"
-            android:layout_weight="1"
-            android:layout_marginBottom="10dp"/>
+            android:text="@string/from_camera"
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/btnPick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="From Phone"
-            android:layout_weight="1"
-            android:layout_marginBottom="10dp"/>
+            android:text="@string/from_phone"
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/btnUrl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="From Internet"
-            android:layout_weight="1"
-            android:layout_marginBottom="10dp"/>
+            android:text="@string/from_internet"
+            android:layout_weight="1" />
 
     </LinearLayout>
 
@@ -53,7 +50,8 @@
             android:id="@+id/tvTest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TEMPORARY PLACE FOR OCR SPOT, REMOVE OR RELOCATE IN DEVELOPMENT!">
+            android:text="@string/initial_text"
+            android:textIsSelectable="true">
         </TextView>
     </ScrollView>
 

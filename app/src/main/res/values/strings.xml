@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">NavDrawerAndImagePickerTestApp</string>
+    <string name="initial_text">OCR Result will be displayed here.</string>
+    <string name="from_internet">From Internet</string>
+    <string name="from_phone">From Phone</string>
+    <string name="from_camera">From Camera</string>
+    <string name="about_text">sCRuM\nCharacter Recognition Mobile\nMade only for Sialan Entrepreneurshit (SE)</string>
 </resources>
