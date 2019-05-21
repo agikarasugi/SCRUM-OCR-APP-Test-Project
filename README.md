@@ -1,8 +1,16 @@
-# SCRUM OCR APP Test Project
+# SCRUM OCR APP - Test Project
 
 This is a test project from sCRuM: Character Recognition Mobile application for android.
 
 sCRuM is using Azure Cognitive Service for Computer Vision (OCR) purposes.
+
+
+
+Made for SLME (Student Local Market Experience) in Software Engineering course in Binus University
+
+
+
+sCRuM is a Android mobile application to recognize text accurrately and fast with several nice features such as OCR History, and inbuilt Text Editor.
 
 ## Screenshots:
 
