@@ -1,18 +1,35 @@
-# SCRUM OCR APP Test Project
+# SCRUM OCR APP - Test Project
 
 This is a test project from sCRuM: Character Recognition Mobile application for android.
 
 sCRuM is using Azure Cognitive Service for Computer Vision (OCR) purposes.
 
-## Concept images:
-<img src="https://raw.githubusercontent.com/agikarasugi/SCRUM-OCR-APP-Test-Project/master/Images/Konsep%20SCRUM.png" width="400">
-<img src="https://raw.githubusercontent.com/agikarasugi/SCRUM-OCR-APP-Test-Project/master/Images/Konsep%20SCRUM2.png" width="400">
-<img src="https://raw.githubusercontent.com/agikarasugi/SCRUM-OCR-APP-Test-Project/master/Images/Konsep%20SCRUM3.png" width="400">
-<img src="https://raw.githubusercontent.com/agikarasugi/SCRUM-OCR-APP-Test-Project/master/Images/Konsep%20SCRUM4.png" width="400">
 
-## Current Status:
 
-Basic layout of home fragment is done, OCR request test succeeded
+Made for SLME (Student Local Market Experience) in Software Engineering course in Binus University
 
-<img src="https://raw.githubusercontent.com/agikarasugi/SCRUM-OCR-APP-Test-Project/master/Images/Screenshot_2019-03-10-21-24-01.png" width="400">
-<img src="https://raw.githubusercontent.com/agikarasugi/SCRUM-OCR-APP-Test-Project/master/Images/Screenshot_2019-03-10-21-24-11.png" width="400">
+
+
+sCRuM is a Android mobile application to recognize text accurrately and fast with several nice features such as OCR History, and inbuilt Text Editor.
+
+## Screenshots:
+
+### Main Screen
+
+<img src="https://github.com/agikarasugi/SCRUM-OCR-APP-Test-Project/blob/common/Images/Screenshot_1.png?raw=true" width=300>
+
+### OCR Result
+
+<img src="https://github.com/agikarasugi/SCRUM-OCR-APP-Test-Project/blob/common/Images/Screenshot_1_2.png?raw=true" width=300>
+
+### Menu Drawer
+
+<img src="https://github.com/agikarasugi/SCRUM-OCR-APP-Test-Project/blob/common/Images/Screenshot_2.png?raw=true" width=300>
+
+### Text Editor
+
+<img src="https://github.com/agikarasugi/SCRUM-OCR-APP-Test-Project/blob/common/Images/Screenshot_3.png?raw=true" width=300>
+
+### About Page
+
+<img src="https://github.com/agikarasugi/SCRUM-OCR-APP-Test-Project/blob/common/Images/Screenshot_4.png?raw=true" width=300>
