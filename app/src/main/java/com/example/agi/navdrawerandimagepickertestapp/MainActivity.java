@@ -66,12 +66,6 @@ public class MainActivity extends AppCompatActivity {
                                 actionBar.setTitle("TEXT EDITOR");
                                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentTextEditor()).commit();
                                 break;
-                            case R.id.nav_settings:
-//                                toast = Toast.makeText(MainActivity.this, "Settings selected", Toast.LENGTH_SHORT);
-//                                toast.show();
-                                actionBar.setTitle("SETTINGS");
-                                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentSettings()).commit();
-                                break;
                             case R.id.nav_about:
 //                                toast = Toast.makeText(MainActivity.this, "About selected", Toast.LENGTH_SHORT);
 //                                toast.show();

@@ -3,6 +3,7 @@ package com.example.agi.navdrawerandimagepickertestapp.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -146,17 +147,15 @@ public class FragmentHome extends Fragment {
                 Bitmap bitmap = MediaStore.Images.Media.
                         getBitmap(Objects.requireNonNull(getContext()).getContentResolver(), uri);
                 bitmap = imageUtil.autoRotateBitmap(getContext(), uri, bitmap);
-                ImageView imageView = Objects.requireNonNull(getActivity()).findViewById(R.id.ivImg);
-                imageView.setImageBitmap(bitmap);
+//                ImageView imageView = Objects.requireNonNull(getActivity()).findViewById(R.id.ivImg);
+//                imageView.setImageBitmap(bitmap);
 
-//                String ocr_texts = ocr.executeOcrRequest(getContext(),
-//                        imgOutputStream(bitmap));
-                final TextView textView = getActivity().findViewById(R.id.tvTest);
-//                textView.setText(ocr_texts);
+//                final TextView textView = getActivity().findViewById(R.id.tvTest);
                 OcrRequest ocrRequest = new OcrRequest(new AsyncResponse() {
                     @Override
                     public void processFinish(Object output) {
-                        textView.setText((String) output);
+//                        textView.setText((String) output);
+                        showOcrResult((String) output, getContext());
                     }
                 }, imgOutputStream(bitmap), getContext());
                 ocrRequest.execute();
@@ -168,19 +167,20 @@ public class FragmentHome extends Fragment {
                 resultCode == Activity.RESULT_OK) {
             Bitmap image = imageUtil.autoRotateBitmap(
                     currentPhotoPath, imageUtil.getFullPic(currentPhotoPath));
-            ImageView imageView = Objects.requireNonNull(getActivity()).findViewById(R.id.ivImg);
-            imageView.setImageBitmap(image);
+//            ImageView imageView = Objects.requireNonNull(getActivity()).findViewById(R.id.ivImg);
+//            imageView.setImageBitmap(image);
 
 //            String ocr_texts = ocr.executeOcrRequest(
 //                    getContext(),
 //                    imgOutputStream(image)
 //            );
-            final TextView textView = getActivity().findViewById(R.id.tvTest);
+//            final TextView textView = getActivity().findViewById(R.id.tvTest);
 //            textView.setText(ocr_texts);
             OcrRequest ocrRequest = new OcrRequest(new AsyncResponse() {
                 @Override
                 public void processFinish(Object output) {
-                    textView.setText((String) output);
+//                    textView.setText((String) output);
+                    showOcrResult((String) output, getContext());
                 }
             }, imgOutputStream(image), getContext());
             ocrRequest.execute();
@@ -212,18 +212,19 @@ public class FragmentHome extends Fragment {
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            ImageView imageView = Objects.requireNonNull(activityWeakReference.get().getActivity()).
-                    findViewById(R.id.ivImg);
-            imageView.setImageBitmap(bitmap);
+//            ImageView imageView = Objects.requireNonNull(activityWeakReference.get().getActivity()).
+//                    findViewById(R.id.ivImg);
+//            imageView.setImageBitmap(bitmap);
 
 //            String ocr_texts = ocr.executeOcrRequest(activityWeakReference.get().getContext(),
 //                    activityWeakReference.get().imgOutputStream(bitmap));
-            final TextView textView_ = Objects.requireNonNull(activityWeakReference.get().getActivity()).findViewById(R.id.tvTest);
+//            final TextView textView_ = Objects.requireNonNull(activityWeakReference.get().getActivity()).findViewById(R.id.tvTest);
 //            textView_.setText(ocr_texts);
             OcrRequest ocrRequest = new OcrRequest(new AsyncResponse() {
                 @Override
                 public void processFinish(Object output) {
-                    textView_.setText((String) output);
+//                    textView_.setText((String) output);
+                    showOcrResult((String) output, activityWeakReference.get().getContext());
                 }
             }, activityWeakReference.get().imgOutputStream(bitmap), activityWeakReference.get().getContext());
             ocrRequest.execute();
@@ -288,5 +289,30 @@ public class FragmentHome extends Fragment {
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
+    }
+
+    private static void showOcrResult(String text, Context context){
+        LayoutInflater li = LayoutInflater.from(context);
+
+        View resultView = li.inflate(R.layout.prompt_ocr_res, null);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+        alertDialogBuilder.setView(resultView);
+
+        final TextView tvOcrRes = resultView.findViewById(R.id.tv_ocr_res);
+        tvOcrRes.setText(text);
+
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 }
